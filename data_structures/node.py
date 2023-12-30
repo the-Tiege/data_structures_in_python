@@ -5,23 +5,26 @@ class Node:
     Args:
         value: The value held by the Node.
         next_node (Node, optional): The next Node in the linked structure.
+        prev_node (Node, optional): The previous Node in the linked structure.
 
     Attributes:
         value: The value held by the node.
         next_node (Node): The next node in the linked structure.
+        prev_node (Node): The previous node in the linked structure.
     """
 
-    def __init__(self, value, next_node=None):
+    def __init__(self, value, next_node=None, prev_node=None):
         """
         Initialise a new Node.
 
         Args:
             value: The value held by the node.
             next_node (Node, optional): The next Node in the linked structure.
-
+            prev_node (Node, optional): The previous Node in the linked structure.
         """
         self.value = value
         self.next_node = next_node
+        self.prev_node
 
 
     def set_next_node(self, next_node):
@@ -41,6 +44,24 @@ class Node:
             next_node (Node): The next Node in the linked structure.
         """
         return self.next_node
+    
+    def set_prev_node(self, prev_node):
+        """
+        Set the previous NOde in the linked structure.
+
+        Args:
+            prev_node (Node, optional): The previous Node in the linked structure.
+        """
+        self.prev_node = prev_node
+
+    def get_prev_node(self):
+        """
+        Get the previous Node in the linked structure.
+
+        Returns:
+            prev_node (Node): The previous Node in the linked structure.
+        """
+        return self.prev_node
     
     def get_value(self):
         """
