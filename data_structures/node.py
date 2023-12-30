@@ -24,7 +24,7 @@ class Node:
         """
         self.value = value
         self.next_node = next_node
-        self.prev_node
+        self.prev_node = prev_node
 
 
     def set_next_node(self, next_node):
