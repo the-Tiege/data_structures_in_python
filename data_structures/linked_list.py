@@ -1,12 +1,13 @@
-from node import Node
+from .node import Node
+from typing import Any
 
 class LinkedList:
-    def __init__(self):
+    def __init__(self) -> None:
         self.head = None
         self.tail = None
         self._length = 0
 
-    def add_to_head(self, value):
+    def add_to_head(self, value: Any) -> None:
         # Add to head of list
         new_node = Node(value=value)
         current_head = self.head
@@ -21,7 +22,7 @@ class LinkedList:
         self.head = new_node
         self._length += 1
 
-    def add_to_tail(self, value):
+    def add_to_tail(self, value: Any) -> None:
         new_node = Node(value=value)
         current_tail = self.tail
 
@@ -36,28 +37,44 @@ class LinkedList:
         self._length += 1
 
 
-    def insert(self):
+    def add_all(self, values: list)-> None:
+        pass
+
+
+    def insert(self, value: Any) -> None:
         # Add to index
         pass
 
-    def remove(self):
+    def remove(self, value: Any) -> Node:
         # TODO: Remove from head of list
         # TODO: Remove from tail of list
         # TODO: Remove from middle of list
         pass
 
-    def get(self):
+    def remove_head() -> Node:
+        pass
+
+    def remove_tail() -> Node:
+        pass
+
+    def get_by_index(self, index: Any) -> Node:
         # TODO: Traverse list
-        # TODO: Find element (index or value?)
+        # TODO: Find element (index)
         # TODO: Return element
         pass
 
-    def length(self):
+    def get_by_value(self, value: Any) -> Node:
+        # TODO: Traverse list
+        # TODO: Find element (value)
+        # TODO: Return element
+        pass
+
+    def length(self) -> int:
         # TODO: Update to traverse list and count elements. 
         # TODO: Or make the current method more robust.
         return self._length
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         current_node = self.head
         output = " "
 
@@ -68,10 +85,3 @@ class LinkedList:
 
         return f"[{output}]"
 
-if __name__ == "__main__":
-    my_linked_list = LinkedList(1)
-    my_linked_list.add(2)
-    my_linked_list.add(3)
-    my_linked_list.add(4)
-
-    print(my_linked_list)
