@@ -59,19 +59,21 @@ def test_remove_head(linked_list_with_values):
 
 
 def test_add_to_head(linked_list_empty):
-    linked_list_empty.add_to_head(5)
+    value = 5
+    linked_list_empty.add_to_head(value)
 
     result = linked_list_empty.head.get_value()
-    expected_result = 5
+    expected_result = value
 
     assert result == expected_result
 
 
 def test_add_to_tail(linked_list_empty):
-    linked_list_empty.add_to_tail(5)
+    value = 5
+    linked_list_empty.add_to_tail(value)
 
     result = linked_list_empty.tail.get_value()
-    expected_result = 5
+    expected_result = value
 
     assert result == expected_result
 

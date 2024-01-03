@@ -26,7 +26,7 @@ class LinkedList:
     
     @head.setter
     def head(self, value):
-        self._head = value 
+        self.add_to_head(value)
     
     @property
     def tail(self):
@@ -39,7 +39,7 @@ class LinkedList:
     def add_to_head(self, value: Any) -> None:
         # Add to head of list
         new_node = Node(value=value)
-        current_head = self.head
+        current_head = self._head
 
         if current_head:
             new_node.set_next_node(current_head)
@@ -48,7 +48,7 @@ class LinkedList:
         if self._tail is None:
             self._tail = current_head
 
-        self.head = new_node
+        self._head = new_node
         self._length += 1
 
     def add_to_tail(self, value: Any) -> None:
