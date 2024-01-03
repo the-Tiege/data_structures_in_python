@@ -22,15 +22,30 @@ def linked_list_empty():
 
 
 def test_get_by_index(linked_list_with_values):
-    pass
+    index = 2
+
+    expected_result = 3
+    result = linked_list_with_values.get_by_index(index).get_value()
+
+    assert expected_result == result
 
 
 def test_get_by_value(linked_list_with_values):
-    pass
+    value = 4
+
+    expected_result = 4
+    result = linked_list_with_values.get_by_value(value)
+
+    assert expected_result == result
 
 
 def test_index_of(linked_list_with_values):
-    pass
+    value = 5
+
+    expected_result = 4
+    result = linked_list_with_values.index_of(value)
+
+    assert result == expected_result
 
 
 def test_remove_by_value(linked_list_with_values):

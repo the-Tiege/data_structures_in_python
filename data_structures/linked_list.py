@@ -92,6 +92,7 @@ class LinkedList:
             new_head = current_head.get_next_node()
             new_head.set_prev_node(None)
             self._head = new_head
+            self._length -= 1
 
         if current_head == self._tail and self._length == 1:
             self.remove_tail()
@@ -106,10 +107,11 @@ class LinkedList:
             new_tail = current_tail.get_prev_node()
             new_tail.set_next_node(None)
             self._tail = new_tail
+            self._length -= 1
 
         if current_tail == self._head and self._length == 1:
             self.remove_head()
-
+        
         return current_tail
 
     def get_by_index(self, index: Any) -> Node:
@@ -119,7 +121,8 @@ class LinkedList:
         if index >= self._length:
             raise IndexError
 
-        current_node = self.get_head()
+        current_node = self._head
+
 
     def get_by_value(self, value: Any) -> Node:
         # TODO: Traverse list
