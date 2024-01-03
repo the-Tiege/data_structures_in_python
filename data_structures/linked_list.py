@@ -133,7 +133,10 @@ class LinkedList:
 
         for _ in range(self.length):
             if current_node:
-                output += f"{current_node.get_value()}, "
+                output += f"{current_node.get_value()}"
+                if current_node.get_next_node():
+                    output += ","
+                output += " "
                 current_node = current_node.get_next_node()
 
         return f"[{output}]"
