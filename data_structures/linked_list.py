@@ -1,42 +1,164 @@
+"""
+NAME
+
+Description
+
+Classes:
+- classes.
+
+Example Usage:
+Create instances
+
+implement methods
+
+Note: if required
+"""
+
 from .node import Node
 from typing import Any
 
 
 class LinkedList:
+    """
+    Description
+
+    Attributes:
+
+
+    Methods:
+
+    """
+
     def __init__(self) -> None:
+        """
+        description
+
+        Parameters:
+        - param name: Type
+                   description
+       Returns:
+       Type: description
+
+       Raises:
+       Type: description
+        """
         self._head = None
         self._tail = None
         self._length = 0
 
     @property
     def length(self) -> int:
+        """
+        description
+
+        Parameters:
+        - param name: Type
+                   description
+       Returns:
+       Type: description
+
+       Raises:
+       Type: description
+        """
         # TODO: Update to traverse list and count elements.
         # TODO: Or make the current method more robust.
         return self._length
 
     @length.setter
     def length(self, value) -> None:
+        """
+        description
+
+        Parameters:
+        - param name: Type
+                   description
+       Returns:
+       Type: description
+
+       Raises:
+       Type: description
+        """
         # TODO: Update to traverse list and count elements.
         # TODO: Or make the current method more robust.
-        self._length = value
+        pass
 
     @property
     def head(self):
+        """
+        description
+
+        Parameters:
+        - param name: Type
+                   description
+       Returns:
+       Type: description
+
+       Raises:
+       Type: description
+        """
         return self._head
 
     @head.setter
     def head(self, value):
+        """
+        description
+
+        Parameters:
+        - param name: Type
+                   description
+       Returns:
+       Type: description
+
+       Raises:
+       Type: description
+        """
         self.add_to_head(value)
 
     @property
     def tail(self):
+        """
+        description
+
+        Parameters:
+        - param name: Type
+                   description
+       Returns:
+       Type: description
+
+       Raises:
+       Type: description
+        """
         return self._tail
 
     @tail.setter
     def tail(self, value):
+        """
+        description
+
+        Parameters:
+        - param name: Type
+                   description
+       Returns:
+       Type: description
+
+       Raises:
+       Type: description
+        """
         self.add_to_tail(value)
 
     def add_to_head(self, value: Any) -> None:
+        """
+        description
+
+        Parameters:
+        - param name: Type
+                   description
+       Returns:
+       Type: description
+
+       Raises:
+       Type: description
+        """
         # Add to head of list
         new_node = Node(value=value)
         current_head = self._head
@@ -52,6 +174,18 @@ class LinkedList:
         self._length += 1
 
     def add_to_tail(self, value: Any) -> None:
+        """
+        description
+
+        Parameters:
+        - param name: Type
+                   description
+       Returns:
+       Type: description
+
+       Raises:
+       Type: description
+        """
         new_node = Node(value=value)
         current_tail = self._tail
 
@@ -66,11 +200,35 @@ class LinkedList:
         self._length += 1
 
     def add_all(self, values: list) -> None:
+        """
+        description
+
+        Parameters:
+        - param name: Type
+                   description
+       Returns:
+       Type: description
+
+       Raises:
+       Type: description
+        """
 
         for value in values:
             self.add_to_tail(value)
 
     def insert(self, index: int, value: Any) -> None:
+        """
+        description
+
+        Parameters:
+        - param name: Type
+                   description
+       Returns:
+       Type: description
+
+       Raises:
+       Type: description
+        """
 
         if index >= self.length:
             raise IndexError
@@ -92,6 +250,18 @@ class LinkedList:
             self._length += 1
 
     def remove_by_value(self, value: Any) -> Node:
+        """
+        description
+
+        Parameters:
+        - param name: Type
+                   description
+       Returns:
+       Type: description
+
+       Raises:
+       Type: description
+        """
         node_to_remove = self.get_by_value(value)
 
         if node_to_remove == self._tail:
@@ -110,6 +280,18 @@ class LinkedList:
         return node_to_remove
 
     def remove_by_index(self, index: int) -> Node:
+        """
+        description
+
+        Parameters:
+        - param name: Type
+                   description
+       Returns:
+       Type: description
+
+       Raises:
+       Type: description
+        """
         node_to_remove = self.get_by_index(index)
 
         if node_to_remove == self._tail:
@@ -128,6 +310,18 @@ class LinkedList:
         return node_to_remove
 
     def remove_head(self) -> Node:
+        """
+        description
+
+        Parameters:
+        - param name: Type
+                   description
+       Returns:
+       Type: description
+
+       Raises:
+       Type: description
+        """
         current_head = self._head
         new_head = None
 
@@ -143,6 +337,18 @@ class LinkedList:
         return current_head
 
     def remove_tail(self) -> Node:
+        """
+        description
+
+        Parameters:
+        - param name: Type
+                   description
+       Returns:
+       Type: description
+
+       Raises:
+       Type: description
+        """
         current_tail = self._tail
         new_tail = None
 
@@ -158,6 +364,18 @@ class LinkedList:
         return current_tail
 
     def get_by_index(self, index: Any) -> Node:
+        """
+        description
+
+        Parameters:
+        - param name: Type
+                   description
+       Returns:
+       Type: description
+
+       Raises:
+       Type: description
+        """
         if index >= self._length:
             raise IndexError
         elif index == 0:
@@ -175,6 +393,18 @@ class LinkedList:
         return current_node
 
     def get_by_value(self, value: Any) -> Node:
+        """
+        description
+
+        Parameters:
+        - param name: Type
+                   description
+       Returns:
+       Type: description
+
+       Raises:
+       Type: description
+        """
         current_node = self._head
         search_node = None
 
@@ -186,6 +416,18 @@ class LinkedList:
         return search_node
 
     def index_of(self, value):
+        """
+        description
+
+        Parameters:
+        - param name: Type
+                   description
+       Returns:
+       Type: description
+
+       Raises:
+       Type: description
+        """
         current_node = self._head
         index = 0
 
@@ -197,6 +439,18 @@ class LinkedList:
         return index
 
     def __repr__(self) -> str:
+        """
+        description
+
+        Parameters:
+        - param name: Type
+                   description
+       Returns:
+       Type: description
+
+       Raises:
+       Type: description
+        """
         current_node = self.head
         output = " "
 
