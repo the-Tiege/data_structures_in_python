@@ -1,6 +1,7 @@
 from data_structures.linked_list import LinkedList
 import pytest
 
+
 @pytest.fixture
 def linked_list_with_values():
     linked_list = LinkedList()
@@ -14,6 +15,7 @@ def linked_list_with_values():
 
     return linked_list
 
+
 @pytest.fixture
 def linked_list_empty():
     return LinkedList()
@@ -22,12 +24,14 @@ def linked_list_empty():
 def test_get_by_index(linked_list_with_values):
     pass
 
+
 def test_get_by_value(linked_list_with_values):
     pass
 
+
 def test_index_of(linked_list_with_values):
     pass
-    
+
 
 def test_remove_by_value(linked_list_with_values):
     linked_list_with_values.remove_by_value(2)
@@ -37,13 +41,19 @@ def test_remove_by_value(linked_list_with_values):
 
     assert expected_result == result
 
+
 def test_remove_tail(linked_list_with_values):
     old_tail = linked_list_with_values.remove_tail()
 
-    expected_result = 1
-    result = old_tail.get_value()
+    expected_result_old_tail = 1
+    result_old_tail = old_tail.get_value()
 
-    assert expected_result == result
+    expected_result_new_tail = 2
+    result_new_tail = linked_list_with_values.tail.get_value()
+
+    assert expected_result_old_tail == result_old_tail
+    assert expected_result_new_tail == result_new_tail
+
 
 def test_remove_head(linked_list_with_values):
     old_head = linked_list_with_values.remove_head()
@@ -77,6 +87,7 @@ def test_add_to_tail(linked_list_empty):
 
     assert result == expected_result
 
+
 def test_insert(linked_list_with_values):
     value = 3
     index = 2
@@ -87,4 +98,3 @@ def test_insert(linked_list_with_values):
     result = linked_list_with_values.get_by_index(index).get_value()
 
     assert result == expected_result
-

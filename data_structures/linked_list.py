@@ -13,28 +13,28 @@ class LinkedList:
         # TODO: Update to traverse list and count elements.
         # TODO: Or make the current method more robust.
         return self._length
-    
+
     @length.setter
     def length(self, value) -> None:
         # TODO: Update to traverse list and count elements.
         # TODO: Or make the current method more robust.
         self._length = value
-    
+
     @property
     def head(self):
         return self._head
-    
+
     @head.setter
     def head(self, value):
         self.add_to_head(value)
-    
+
     @property
     def tail(self):
         return self._tail
-    
+
     @tail.setter
     def tail(self, value):
-        self._tail = value
+        self.add_to_tail(value)
 
     def add_to_head(self, value: Any) -> None:
         # Add to head of list
@@ -60,7 +60,7 @@ class LinkedList:
             current_tail.set_next_node(new_node)
 
         if self._head is None:
-            self.head = new_node
+            self._head = new_node
 
         self._tail = new_node
         self._length += 1
@@ -85,10 +85,32 @@ class LinkedList:
         pass
 
     def remove_head(self) -> Node:
-        pass
+        current_head = self._head
+        new_head = None
+
+        if current_head:
+            new_head = current_head.get_next_node()
+            new_head.set_prev_node(None)
+            self._head = new_head
+
+        if current_head == self._tail and self._length == 1:
+            self.remove_tail()
+
+        return current_head
 
     def remove_tail(self) -> Node:
-        pass
+        current_tail = self._tail
+        new_tail = None
+
+        if current_tail:
+            new_tail = current_tail.get_prev_node()
+            new_tail.set_next_node(None)
+            self._tail = new_tail
+
+        if current_tail == self._head and self._length == 1:
+            self.remove_head()
+
+        return current_tail
 
     def get_by_index(self, index: Any) -> Node:
         # TODO: Traverse list
@@ -96,7 +118,7 @@ class LinkedList:
         # TODO: Return element
         if index >= self._length:
             raise IndexError
-        
+
         current_node = self.get_head()
 
     def get_by_value(self, value: Any) -> Node:
