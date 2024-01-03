@@ -66,23 +66,66 @@ class LinkedList:
         self._length += 1
 
     def add_all(self, values: list) -> None:
-        pass
 
-    def insert(self, value: Any) -> None:
-        # Add to index
-        pass
+        for value in values:
+            self.add_to_tail(value)
+
+    def insert(self, index: int, value: Any) -> None:
+
+        if index >= self.length:
+            raise IndexError
+
+        if index == 0:
+            self.add_to_head(value)
+
+        elif index == self._length - 1:
+            self.add_to_tail
+
+        else:
+            node_to_insert = Node(value)
+            node_after = self.get_by_index(index)
+            node_before = node_after.get_prev_node()
+            node_to_insert.set_next_node(node_after)
+            node_to_insert.set_prev_node(node_before)
+            node_before.set_next_node(node_to_insert)
+            node_after.set_prev_node(node_to_insert)
+            self._length += 1
 
     def remove_by_value(self, value: Any) -> Node:
-        # TODO: Remove from head of list
-        # TODO: Remove from tail of list
-        # TODO: Remove from middle of list
-        pass
+        node_to_remove = self.get_by_value(value)
 
-    def remove_by_index(self, value: Any) -> Node:
-        # TODO: Remove from head of list
-        # TODO: Remove from tail of list
-        # TODO: Remove from middle of list
-        pass
+        if node_to_remove == self._tail:
+            self.remove_tail()
+
+        elif node_to_remove == self._head:
+            self.remove_head()
+
+        else:
+            node_before = node_to_remove.get_prev_node()
+            node_after = node_to_remove.get_next_node()
+            node_before.set_next_node(node_after)
+            node_after.set_prev_node(node_before)
+            self._length -= 1
+
+        return node_to_remove
+
+    def remove_by_index(self, index: int) -> Node:
+        node_to_remove = self.get_by_index(index)
+
+        if node_to_remove == self._tail:
+            self.remove_tail()
+
+        elif node_to_remove == self._head:
+            self.remove_head()
+
+        else:
+            node_before = node_to_remove.get_prev_node()
+            node_after = node_to_remove.get_next_node()
+            node_before.set_next_node(node_after)
+            node_after.set_prev_node(node_before)
+            self._length -= 1
+
+        return node_to_remove
 
     def remove_head(self) -> Node:
         current_head = self._head
@@ -141,7 +184,7 @@ class LinkedList:
                 break
             current_node = current_node.get_next_node()
         return search_node
-    
+
     def index_of(self, value):
         current_node = self._head
         index = 0
@@ -152,7 +195,6 @@ class LinkedList:
             current_node = current_node.get_next_node()
             index += 1
         return index
-
 
     def __repr__(self) -> str:
         current_node = self.head

@@ -83,6 +83,33 @@ def test_remove_head(linked_list_with_values):
     assert expected_result_new_head == result_new_head
 
 
+def test_remove_by_value(linked_list_with_values):
+    value = 2
+
+    expected_return_result = value
+    return_result = linked_list_with_values.remove_by_value(value).get_value()
+
+    expected_result = None
+    result = linked_list_with_values.get_by_value(value)
+
+    assert expected_return_result == return_result
+    assert expected_result == result
+
+
+def test_remove_by_index(linked_list_with_values):
+    index = 1
+    value = 2
+
+    expected_return_result = value
+    return_result = linked_list_with_values.remove_by_index(index).get_value()
+
+    expected_result = None
+    result = linked_list_with_values.get_by_value(value)
+
+    assert expected_return_result == return_result
+    assert expected_result == result
+
+
 def test_add_to_head(linked_list_empty):
     value = 5
     linked_list_empty.add_to_head(value)
@@ -115,8 +142,37 @@ def test_insert(linked_list_with_values):
     assert result == expected_result
 
 
-def test_length():
-    pass
+def test_length_adding(linked_list_empty):
+    linked_list_empty.add_to_head(1)
+    linked_list_empty.add_to_tail(2)
+    linked_list_empty.add_to_head(1)
+    linked_list_empty.add_to_tail(2)
+    linked_list_empty.insert(1, 5)
+    
+    expected_result = 5
+    result = linked_list_empty.length
 
-def test_add_all():
-    pass
+    assert result == expected_result
+
+def test_length_removing(linked_list_with_values):
+    linked_list_with_values.remove_by_index(1)
+    linked_list_with_values.remove_by_value(6)
+    linked_list_with_values.remove_head()
+    linked_list_with_values.remove_tail()
+
+    expected_result = 2
+    result = linked_list_with_values.length
+
+    assert result == expected_result
+
+
+def test_add_all(linked_list_empty):
+    values = [1, 2, 3, 4, 5, 6]
+    expected_length = len(values)
+
+    linked_list_empty.add_all(values)
+
+    expected_result = expected_length
+    result = linked_list_empty.length
+
+    assert expected_result == result
