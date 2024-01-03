@@ -111,24 +111,48 @@ class LinkedList:
 
         if current_tail == self._head and self._length == 1:
             self.remove_head()
-        
+
         return current_tail
 
     def get_by_index(self, index: Any) -> Node:
-        # TODO: Traverse list
-        # TODO: Find element (index)
-        # TODO: Return element
         if index >= self._length:
             raise IndexError
+        elif index == 0:
+            return self._head
+        elif index == self._length - 1:
+            return self._tail
 
         current_node = self._head
+        current_index = 0
 
+        while current_node and current_index < index:
+            current_node = current_node.get_next_node()
+            current_index += 1
+
+        return current_node
 
     def get_by_value(self, value: Any) -> Node:
-        # TODO: Traverse list
-        # TODO: Find element (value)
-        # TODO: Return element
-        pass
+        current_node = self._head
+        search_node = None
+
+        while current_node:
+            if current_node.get_value() == value:
+                search_node = current_node
+                break
+            current_node = current_node.get_next_node()
+        return search_node
+    
+    def index_of(self, value):
+        current_node = self._head
+        index = 0
+
+        while current_node:
+            if current_node.get_value() == value:
+                break
+            current_node = current_node.get_next_node()
+            index += 1
+        return index
+
 
     def __repr__(self) -> str:
         current_node = self.head
