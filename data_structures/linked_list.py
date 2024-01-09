@@ -1,17 +1,12 @@
 """
-NAME
+Linked List
 
-Description
+Data structure containing an ordered set of data elements (nodes).
+Each node contains a link to the next node in the list and the previous node.
 
 Classes:
-- classes.
+- LinkedList: A class containing the methods required for a linked list datastructure.
 
-Example Usage:
-Create instances
-
-implement methods
-
-Note: if required
 """
 
 from .node import Node
@@ -23,7 +18,12 @@ class LinkedList:
     Description
 
     Attributes:
-
+    - _head: Node
+             The head node indicates the start of the linked list.
+    - _tail: Node
+             The tail node indicates the end of the linked list.
+    - _length: int
+             int value representing the current number of nodes in the list.  
 
     Methods:
 
@@ -363,7 +363,7 @@ class LinkedList:
 
         return current_tail
 
-    def get_by_index(self, index: Any) -> Node:
+    def get_by_index(self, index: int) -> Node:
         """
         description
 
@@ -415,7 +415,7 @@ class LinkedList:
             current_node = current_node.get_next_node()
         return search_node
 
-    def index_of(self, value):
+    def index_of(self, value: Any) -> int:
         """
         description
 
