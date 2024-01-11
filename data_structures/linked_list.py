@@ -52,86 +52,64 @@ class LinkedList:
     def length(self, value) -> None:
         """
         Function added to make length editable.
-        Deosent allow _length to be altered this way.
+        Doesn't allow _length to be altered this way.
         """
         pass
 
     @property
-    def head(self):
+    def head(self) -> Node:
         """
-        description
+        Returns the head of the LinkedList
 
-        Parameters:
-        - param name: Type
-                   description
        Returns:
-       Type: description
-
-       Raises:
-       Type: description
+       Node: The first node in the list.
         """
         return self._head
 
     @head.setter
-    def head(self, value):
+    def head(self, value: Any) -> None:
         """
-        description
+        Calls add_to_head method to properly add
+        the head node to the list.
 
         Parameters:
-        - param name: Type
-                   description
-       Returns:
-       Type: description
-
-       Raises:
-       Type: description
+        - value: Any
+                 The value stored in the Node
         """
         self.add_to_head(value)
 
     @property
-    def tail(self):
+    def tail(self) -> Node:
         """
-        description
+        Returns the tail node.
+        The last node in the list
 
-        Parameters:
-        - param name: Type
-                   description
-       Returns:
-       Type: description
-
-       Raises:
-       Type: description
+        Returns:
+        Node: The tail node.
         """
         return self._tail
 
     @tail.setter
-    def tail(self, value):
+    def tail(self, value: Any) -> None:
         """
-        description
+        Calls the add_to_tail method to 
+        add tail node to the list.
 
         Parameters:
-        - param name: Type
-                   description
-       Returns:
-       Type: description
-
-       Raises:
-       Type: description
+        - value: Any
+                 The value stored in the node.
         """
         self.add_to_tail(value)
 
     def add_to_head(self, value: Any) -> None:
         """
-        description
+        Creates a Node containig he value passed 
+        as a parameter and appends it to the head 
+        of the LinkedList
 
         Parameters:
-        - param name: Type
-                   description
-       Returns:
-       Type: description
-
-       Raises:
-       Type: description
+        - value: Any
+                 The value to be stored in the node.
         """
         # Add to head of list
         new_node = Node(value=value)
@@ -149,16 +127,13 @@ class LinkedList:
 
     def add_to_tail(self, value: Any) -> None:
         """
-        description
+        Creates a node containing the value passed 
+        as a parameter and appends it to the end of the 
+        LinkedList.
 
         Parameters:
-        - param name: Type
-                   description
-       Returns:
-       Type: description
-
-       Raises:
-       Type: description
+        - value: Any
+                 The value to be contained in the node.
         """
         new_node = Node(value=value)
         current_tail = self._tail
@@ -175,16 +150,13 @@ class LinkedList:
 
     def add_all(self, values: list) -> None:
         """
-        description
+        Appends a list of values to the tail 
+        f the LinkedList using the add_to_tail 
+        method.
 
         Parameters:
-        - param name: Type
-                   description
-       Returns:
-       Type: description
-
-       Raises:
-       Type: description
+        - values: list
+                  List of values to be added to the LinkedList as nodes.
         """
 
         for value in values:
@@ -192,16 +164,14 @@ class LinkedList:
 
     def insert(self, index: int, value: Any) -> None:
         """
-        description
+        Creates a node containing the entered value
+        and inserts it at the required index.
 
         Parameters:
-        - param name: Type
-                   description
-       Returns:
-       Type: description
-
-       Raises:
-       Type: description
+        - index: int
+                 The index to insert the node at.
+        - value: Any
+                 The value contained in the node.
         """
 
         if index >= self.length:
@@ -225,16 +195,14 @@ class LinkedList:
 
     def remove_by_value(self, value: Any) -> Node:
         """
-        description
+        Searches the LinkedList for the entered value 
+        and removes its first occurrence.
 
         Parameters:
-        - param name: Type
-                   description
-       Returns:
-       Type: description
-
-       Raises:
-       Type: description
+        - value: Any
+                 The value of the node to be removed.
+        Returns:
+        Node: The node containing the value to be removed.
         """
         node_to_remove = self.get_by_value(value)
 
@@ -255,16 +223,13 @@ class LinkedList:
 
     def remove_by_index(self, index: int) -> Node:
         """
-        description
+        Reoves the node at the specified index.
 
         Parameters:
-        - param name: Type
-                   description
+        - index: int
+                 The index of the Node to be removed.
        Returns:
-       Type: description
-
-       Raises:
-       Type: description
+       Node: The Node to be removed.
         """
         node_to_remove = self.get_by_index(index)
 
