@@ -31,16 +31,7 @@ class LinkedList:
 
     def __init__(self) -> None:
         """
-        description
-
-        Parameters:
-        - param name: Type
-                   description
-       Returns:
-       Type: description
-
-       Raises:
-       Type: description
+        Initialise LinkedList 
         """
         self._head = None
         self._tail = None
@@ -49,37 +40,20 @@ class LinkedList:
     @property
     def length(self) -> int:
         """
-        description
+        Returns LinkedList length
 
-        Parameters:
-        - param name: Type
-                   description
        Returns:
-       Type: description
-
-       Raises:
-       Type: description
+       Type: int
+             The length of the LinkedList
         """
-        # TODO: Update to traverse list and count elements.
-        # TODO: Or make the current method more robust.
         return self._length
 
     @length.setter
     def length(self, value) -> None:
         """
-        description
-
-        Parameters:
-        - param name: Type
-                   description
-       Returns:
-       Type: description
-
-       Raises:
-       Type: description
+        Function added to make length editable.
+        Deosent allow _length to be altered this way.
         """
-        # TODO: Update to traverse list and count elements.
-        # TODO: Or make the current method more robust.
         pass
 
     @property
