@@ -250,13 +250,10 @@ class LinkedList:
 
     def remove_head(self) -> Node:
         """
-        description
+        Removes the head node
 
-        Parameters:
-        - param name: Type
-                   description
        Returns:
-       Type: description
+       Node: The old head node.
 
        Raises:
        Type: description
@@ -277,16 +274,10 @@ class LinkedList:
 
     def remove_tail(self) -> Node:
         """
-        description
+        Removes the tail Node.
 
-        Parameters:
-        - param name: Type
-                   description
-       Returns:
-       Type: description
-
-       Raises:
-       Type: description
+        Returns:
+        Node: The old tail node.
         """
         current_tail = self._tail
         new_tail = None
@@ -304,16 +295,13 @@ class LinkedList:
 
     def get_by_index(self, index: int) -> Node:
         """
-        description
+        Retrieves a node at the specified index 
 
         Parameters:
-        - param name: Type
-                   description
+        - index: int
+                 The index of the node to be retrieved. 
        Returns:
-       Type: description
-
-       Raises:
-       Type: description
+       Node: The node at the entered index.
         """
         if index >= self._length:
             raise IndexError
@@ -333,16 +321,15 @@ class LinkedList:
 
     def get_by_value(self, value: Any) -> Node:
         """
-        description
+        Searches the LinkedList for a node containing
+        the specified value. Returns the first node 
+        containing this value.
 
         Parameters:
-        - param name: Type
-                   description
+        - value: Any
+                 The value of the node to find.
        Returns:
-       Type: description
-
-       Raises:
-       Type: description
+       Node: The first Node containing the specified value.
         """
         current_node = self._head
         search_node = None
@@ -356,16 +343,14 @@ class LinkedList:
 
     def index_of(self, value: Any) -> int:
         """
-        description
+        Returns the index of the first occurrence 
+        of the specified value
 
         Parameters:
-        - param name: Type
-                   description
+        - value: Any
+                 The value of the Node to be found.
        Returns:
-       Type: description
-
-       Raises:
-       Type: description
+       Node: The first occurrence of a node containing the specified value.
         """
         current_node = self._head
         index = 0
@@ -379,16 +364,11 @@ class LinkedList:
 
     def __repr__(self) -> str:
         """
-        description
+        Returns a string representation of the
+        linked_list
 
-        Parameters:
-        - param name: Type
-                   description
        Returns:
-       Type: description
-
-       Raises:
-       Type: description
+       str: String representation of the LinkedList.
         """
         current_node = self.head
         output = " "
