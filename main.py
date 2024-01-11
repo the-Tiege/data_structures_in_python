@@ -14,4 +14,8 @@ print(old_head)
 print(new_list.tail)
 
 
-print(new_list)
+print(new_list.length)
+
+new_list.length = 7
+
+print(new_list.length)
