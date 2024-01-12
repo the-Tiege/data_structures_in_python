@@ -349,18 +349,24 @@ class LinkedList:
         Parameters:
         - value: Any
                  The value of the Node to be found.
-       Returns:
-       Node: The first occurrence of a node containing the specified value.
+        Returns:
+        Node: The first occurrence of a node containing the specified value.
         """
         current_node = self._head
         index = 0
+        found_value = False
 
         while current_node:
             if current_node.get_value() == value:
+                found_value = True
                 break
             current_node = current_node.get_next_node()
             index += 1
-        return index
+
+        if found_value:
+            return index
+        else:
+            return None
 
     def __repr__(self) -> str:
         """
