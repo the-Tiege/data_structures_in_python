@@ -9,8 +9,9 @@ Classes:
 
 """
 
-from .node import Node
 from typing import Any
+
+from .node import Node
 
 
 class LinkedList:
@@ -54,7 +55,6 @@ class LinkedList:
         Function added to make length editable.
         Doesn't allow _length to be altered this way.
         """
-        pass
 
     @property
     def head(self) -> Node:
@@ -181,7 +181,7 @@ class LinkedList:
             self.add_to_head(value)
 
         elif index == self._length - 1:
-            self.add_to_tail
+            self.add_to_tail(value)
 
         else:
             node_to_insert = Node(value)
@@ -231,7 +231,8 @@ class LinkedList:
         Returns:
         Node: The Node to be removed.
 
-        Raises: ValueError if index is not an int, is less than zero or is greater than the length of the list.
+        Raises: ValueError if index is not an int, is less 
+        than zero or is greater than the length of the list.
         """
 
         if not isinstance(index, int) or index < 0 or index > self.length:
@@ -311,9 +312,11 @@ class LinkedList:
         """
         if not isinstance(index, int) or index < 0 or index > self.length:
             raise ValueError
-        elif index == 0:
+
+        if index == 0:
             return self._head
-        elif index == self._length - 1:
+
+        if index == self._length - 1:
             return self._tail
 
         current_node = self._head
@@ -350,8 +353,8 @@ class LinkedList:
 
         if node_in_list:
             return search_node
-        else:
-            return None
+
+        return None
 
     def index_of(self, value: Any) -> int:
         """
@@ -377,8 +380,8 @@ class LinkedList:
 
         if found_value:
             return index
-        else:
-            return None
+
+        return None
 
     def __repr__(self) -> str:
         """
@@ -400,3 +403,37 @@ class LinkedList:
                 current_node = current_node.get_next_node()
 
         return f"[{output}]"
+    
+    def _remove_node(self,node_to_remove):
+
+        if node_to_remove == self._tail:
+            self.remove_tail()
+
+        elif node_to_remove == self._head:
+            self.remove_head()
+
+        else:
+            node_before = node_to_remove.get_prev_node()
+            node_after = node_to_remove.get_next_node()
+            node_before.set_next_node(node_after)
+            node_after.set_prev_node(node_before)
+            self._length -= 1
+
+        return node_to_remove
+    
+    def sort(self):
+        sorted_list = LinkedList()
+
+        for i in range(self.length):
+            min_node = self.get_by_index(i)
+            current_node = self.get_by_index(i)
+            while current_node:
+                if current_node.get_value() < min_node.get_value():
+                    min_node = current_node
+                current_node = current_node.get_next_node()
+            min_node = self._remove_node(min_node)
+            self.insert(i, min_node.get_value())
+
+            
+
+

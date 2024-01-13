@@ -213,9 +213,9 @@ def test_sort():
     expected_result = LinkedList().add_all([1, 2, 3, 4, 5, 6])
     linked_list_unsorted = LinkedList().add_all([6, 2, 5, 3, 4, 1])
 
-    result = linked_list_unsorted.sort()
+    linked_list_unsorted.sort()
 
-    assert result == expected_result
+    assert linked_list_unsorted == expected_result
 
 
 @pytest.mark.parametrize("index", [(-1), (15), ('A'), ('0')])

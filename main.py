@@ -1,21 +1,11 @@
 from data_structures import linked_list, node
 
-new_list = linked_list.LinkedList()
-new_list.add_to_head(1)
-new_list.add_to_head(2)
-new_list.add_to_head(3)
-new_list.add_to_head(4)
-new_list.add_to_head(5)
-new_list.add_to_head(6)
 
-old_head = new_list.remove_tail()
+expected_result = linked_list.LinkedList()
+expected_result.add_all([1, 2, 3, 4, 5, 6])
+linked_list_unsorted = linked_list.LinkedList()
+linked_list_unsorted.add_all([6, 2, 5, 3, 4, 1])
 
-print(old_head)
-print(new_list.tail)
+linked_list_unsorted.sort()
 
-
-print(new_list.length)
-
-new_list.length = 7
-
-print(new_list.length)
+print(linked_list_unsorted)
