@@ -174,8 +174,8 @@ class LinkedList:
                  The value contained in the node.
         """
 
-        if index >= self.length:
-            raise IndexError
+        if not isinstance(index, int) or index < 0 or index > self.length:
+            raise ValueError
 
         if index == 0:
             self.add_to_head(value)
@@ -212,7 +212,7 @@ class LinkedList:
         elif node_to_remove == self._head:
             self.remove_head()
 
-        else:
+        elif node_to_remove:
             node_before = node_to_remove.get_prev_node()
             node_after = node_to_remove.get_next_node()
             node_before.set_next_node(node_after)
@@ -228,9 +228,15 @@ class LinkedList:
         Parameters:
         - index: int
                  The index of the Node to be removed.
-       Returns:
-       Node: The Node to be removed.
+        Returns:
+        Node: The Node to be removed.
+
+        Raises: ValueError if index is not an int, is less than zero or is greater than the length of the list.
         """
+
+        if not isinstance(index, int) or index < 0 or index > self.length:
+            raise ValueError
+
         node_to_remove = self.get_by_index(index)
 
         if node_to_remove == self._tail:
@@ -303,8 +309,8 @@ class LinkedList:
        Returns:
        Node: The node at the entered index.
         """
-        if index >= self._length:
-            raise IndexError
+        if not isinstance(index, int) or index < 0 or index > self.length:
+            raise ValueError
         elif index == 0:
             return self._head
         elif index == self._length - 1:
@@ -333,13 +339,19 @@ class LinkedList:
         """
         current_node = self._head
         search_node = None
+        node_in_list = False
 
         while current_node:
             if current_node.get_value() == value:
                 search_node = current_node
+                node_in_list = True
                 break
             current_node = current_node.get_next_node()
-        return search_node
+
+        if node_in_list:
+            return search_node
+        else:
+            return None
 
     def index_of(self, value: Any) -> int:
         """

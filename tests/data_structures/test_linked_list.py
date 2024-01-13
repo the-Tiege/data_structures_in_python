@@ -21,6 +21,10 @@ def linked_list_empty():
     return LinkedList()
 
 
+def generate_linked_list(values: list) -> LinkedList:
+    return LinkedList().add_all(values)
+
+
 GET_BY_INDEX_PARAMS = [(2, 3), (0, 1), (5, 6)]
 
 
@@ -87,14 +91,18 @@ def test_remove_head(linked_list_with_values):
     assert expected_result_new_head == result_new_head
 
 
-REMOVE_BY_VALUE_PARAMS = [(2, None), (17, None), (1, None), (6, None)]
+REMOVE_BY_VALUE_PARAMS = [(2, 2), (17, None), (1, 1), (6, 6)]
 
+@pytest.mark.parametrize("value, expected_value", REMOVE_BY_VALUE_PARAMS)
+def test_remove_by_value(linked_list_with_values, value, expected_value):
 
-@pytest.mark.parametrize("value, expected_result", REMOVE_BY_VALUE_PARAMS)
-def test_remove_by_value(linked_list_with_values, value, expected_result):
+    expected_return_result = expected_value
+    removed_node = linked_list_with_values.remove_by_value(value)
 
-    expected_return_result = value
-    return_result = linked_list_with_values.remove_by_value(value).get_value()
+    try:
+        return_result = removed_node.get_value()
+    except:
+        return_result = removed_node
 
     expected_result = None
     result = linked_list_with_values.get_by_value(value)
@@ -103,17 +111,24 @@ def test_remove_by_value(linked_list_with_values, value, expected_result):
     assert expected_result == result
 
 
-REMOVE_BY_INDEX_PARAMS = [(1, 2), (2, 3), (5, 6), (17, None)]
+REMOVE_BY_INDEX_PARAMS = [(1, 2), (2, 3), (5, 6)]
 
 
 @pytest.mark.parametrize("index, value", REMOVE_BY_INDEX_PARAMS)
 def test_remove_by_index(linked_list_with_values, index, value):
 
     expected_return_result = value
-    return_result = linked_list_with_values.remove_by_index(index).get_value()
+    removed_node = linked_list_with_values.remove_by_index(index)
+
+    try:
+        return_result = removed_node.get_value()
+    except:
+        return_result = removed_node
 
     expected_result = None
     result = linked_list_with_values.get_by_value(value)
+
+    
 
     assert expected_return_result == return_result
     assert expected_result == result
@@ -193,14 +208,30 @@ def test_add_all(linked_list_empty, values):
     assert expected_result == result
 
 
-SORT_PARAMS = [
-    ([5, 1, 3, 4, 2], [1, 2, 3, 4, 5], True),
-    ([5, 1, 3, 4, 2], [5, 4, 3, 2, 1], False),
-    ([77, 200, 3, 99], [3, 77, 99, 200], True),
-    ([200, 1, -1, 69, -5], [-5, -1, 1, 69, 200], True)
-]
+def test_sort():
+
+    expected_result = LinkedList().add_all([1, 2, 3, 4, 5, 6])
+    linked_list_unsorted = LinkedList().add_all([6, 2, 5, 3, 4, 1])
+
+    result = linked_list_unsorted.sort()
+
+    assert result == expected_result
 
 
-@pytest.mark.parametrize("values, expected_result, ascending")
-def test_sort(linked_list_empty, values, expected_result, ascending):
-    linked_list_empty.add_all(values)
+@pytest.mark.parametrize("index", [(-1), (15), ('A'), ('0')])
+def test_get_index_raises_ValueError(linked_list_with_values, index):
+    with pytest.raises(ValueError):
+        linked_list_with_values.get_by_index(index)
+
+
+@pytest.mark.parametrize("index", [(-1), (15), ('A'), ('0')])
+def test_insert_raises_ValueError(linked_list_with_values, index):
+    value = 1
+    with pytest.raises(ValueError):
+        linked_list_with_values.insert(index, value)
+
+
+@pytest.mark.parametrize("index", [(-1), (15), ('A'), ('0')])
+def test_remove_by_index_raises_ValueError(linked_list_with_values, index):
+    with pytest.raises(ValueError):
+        linked_list_with_values.remove_by_index(index)
