@@ -16,7 +16,7 @@ from .node import Node
 
 class LinkedList:
     """
-    Description
+    A doubly linked list implementation.
 
     Attributes:
     - _head: Node
@@ -27,6 +27,25 @@ class LinkedList:
              int value representing the current number of nodes in the list.  
 
     Methods:
+
+        - __init__: Initializes the linked list.
+        - length (property): Returns the length of the linked list.
+        - head (property): Returns the head node of the linked list.
+        - tail (property): Returns the tail node of the linked list.
+        - add_to_head: Adds a node to the head of the linked list.
+        - add_to_tail: Adds a node to the tail of the linked list.
+        - add_all: Appends a list of values to the tail of the linked list.
+        - insert: Inserts a node at the specified index.
+        - remove_by_value: Removes the first occurrence of a node with the specified value.
+        - remove_by_index: Removes the node at the specified index.
+        - remove_head: Removes the head node.
+        - remove_tail: Removes the tail node.
+        - get_by_index: Retrieves a node at the specified index.
+        - get_by_value: Searches for a node with the specified value and returns the first occurrence.
+        - index_of: Returns the index of the first occurrence of a node with the specified value.
+        - __repr__: Returns a string representation of the linked list.
+        - _remove_node: Helper method to remove a specified node from the linked list.
+        - sort: Sorts the linked list in ascending order.
 
     """
 
@@ -176,7 +195,7 @@ class LinkedList:
 
         if not isinstance(index, int):
             raise ValueError("Index must be of type int")
-        
+
         if index < 0 or index > self.length:
             raise IndexError("Index outside of range")
 
@@ -407,7 +426,16 @@ class LinkedList:
 
         return f"[{output}]"
 
-    def _remove_node(self, node_to_remove):
+    def _remove_node(self, node_to_remove: Node) -> Node:
+        """
+        Internal method used to remove a node from the list
+
+        Parameters:
+        - node_to_remove: Node
+                    description
+        Returns:
+        Node: The removed node
+        """
 
         if node_to_remove == self._tail:
             self.remove_tail()
@@ -424,19 +452,23 @@ class LinkedList:
 
         return node_to_remove
 
-    def sort(self):
+    def sort(self) -> None:
+        """
+        Sorts the list in ascending order using selection sort.
+        The method iterates over unsorted portion the list and finds the min value.
+        Once found it removes this value and inserts it in the left most position
+        this element is then considered sorted. The process continues until
+        the list is sorted.
+        """
 
-        for i in range(self.length):
+        for i in range(self.length - 1):
             min_node = self.get_by_index(i)
             current_node = self.get_by_index(i)
+
             while current_node:
                 if current_node.get_value() < min_node.get_value():
                     min_node = current_node
                 current_node = current_node.get_next_node()
-            min_node = self._remove_node(min_node)
 
-            try:
-                self.insert(i, min_node.get_value())
-            except IndexError:
-                index = i - 1
-                self.insert(index, min_node.get_value())
+            min_node = self._remove_node(min_node)
+            self.insert(i, min_node.get_value())
