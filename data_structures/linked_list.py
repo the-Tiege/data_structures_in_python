@@ -174,13 +174,16 @@ class LinkedList:
                  The value contained in the node.
         """
 
-        if not isinstance(index, int) or index < 0 or index > self.length:
-            raise ValueError
+        if not isinstance(index, int):
+            raise ValueError("Index must be of type int")
+        
+        if index < 0 or index > self.length:
+            raise IndexError("Index outside of range")
 
         if index == 0:
             self.add_to_head(value)
 
-        elif index == self._length - 1:
+        elif index == self._length:
             self.add_to_tail(value)
 
         else:
@@ -403,8 +406,8 @@ class LinkedList:
                 current_node = current_node.get_next_node()
 
         return f"[{output}]"
-    
-    def _remove_node(self,node_to_remove):
+
+    def _remove_node(self, node_to_remove):
 
         if node_to_remove == self._tail:
             self.remove_tail()
@@ -420,9 +423,8 @@ class LinkedList:
             self._length -= 1
 
         return node_to_remove
-    
+
     def sort(self):
-        sorted_list = LinkedList()
 
         for i in range(self.length):
             min_node = self.get_by_index(i)
@@ -432,8 +434,9 @@ class LinkedList:
                     min_node = current_node
                 current_node = current_node.get_next_node()
             min_node = self._remove_node(min_node)
-            self.insert(i, min_node.get_value())
 
-            
-
-
+            try:
+                self.insert(i, min_node.get_value())
+            except IndexError:
+                index = i - 1
+                self.insert(index, min_node.get_value())

@@ -210,12 +210,17 @@ def test_add_all(linked_list_empty, values):
 
 def test_sort():
 
-    expected_result = LinkedList().add_all([1, 2, 3, 4, 5, 6])
-    linked_list_unsorted = LinkedList().add_all([6, 2, 5, 3, 4, 1])
+    expected_result = LinkedList()
+    expected_result.add_all([1, 2, 3, 4, 5, 6])
+    linked_list_unsorted = LinkedList()
+    linked_list_unsorted.add_all([6, 2, 5, 3, 4, 1])
 
     linked_list_unsorted.sort()
 
-    assert linked_list_unsorted == expected_result
+    expected_srt = expected_result.__repr__()
+    result_str = linked_list_unsorted.__repr__()
+
+    assert result_str == expected_srt
 
 
 @pytest.mark.parametrize("index", [(-1), (15), ('A'), ('0')])
