@@ -13,14 +13,24 @@ class HashMap:
     def _compress(self, hash_code: int) -> int:
         return hash_code % self.array_size
 
-    def assign(self):
-        pass
+    def assign(self, key: Any, value: Any) -> None:
+        hash_code = self._hash(key)
+        array_index = self._compress(hash_code)
+        self.array[array_index] = [key, value]
 
-    def retrieve(self):
-        pass
+
+    def retrieve(self, key: Any) -> Any:
+        hash_code = self._hash(key)
+        array_index = self._compress(hash_code)
+
+        payload = self.array[array_index]
+
+        if payload[0] is None or payload[0] is not key:
+            return None
+        else:
+            return payload[1]
 
 
 hash_map = HashMap(5)
-my_hash = hash_map._hash("Stuff")
-
-print(type(hash_map._compress(my_hash)))
+hash_map.assign("Stuff", "Thing")
+print(thing)
