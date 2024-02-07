@@ -31,6 +31,3 @@ class HashMap:
             return payload[1]
 
 
-hash_map = HashMap(5)
-hash_map.assign("Stuff", "Thing")
-print(thing)
