@@ -10,5 +10,5 @@ linked_list_unsorted.add_all([6, 100, 50, 2, 99, -1])
 linked_list_unsorted.sort()
 expected_result.sort()
 
-print(linked_list_unsorted)
-print(expected_result)
+for item in linked_list_unsorted:
+    print(item)

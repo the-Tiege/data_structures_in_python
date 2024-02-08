@@ -1,11 +1,13 @@
 from typing import Any
+from node import Node
+from linked_list import LinkedList
 
 
 class HashMap:
     
     def __init__(self, size:int) -> None:
         self.array_size = size
-        self.array = [None for _ in range(self.array_size)]
+        self.array = [LinkedList() for _ in range(self.array_size)]
 
     def _hash(self, key: Any) -> int:
         return sum(key.encode())
@@ -16,6 +18,13 @@ class HashMap:
     def assign(self, key: Any, value: Any) -> None:
         hash_code = self._hash(key)
         array_index = self._compress(hash_code)
+        payload = Node([key, value])
+        list_at_array = self.array[array_index]
+
+        for item in list_at_array:
+            if item[0] == key:
+                item[1] = value
+
         self.array[array_index] = [key, value]
 
 

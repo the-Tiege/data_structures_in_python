@@ -472,3 +472,9 @@ class LinkedList:
 
             min_node = self._remove_node(min_node)
             self.insert(i, min_node.get_value())
+
+    def __iter__(self):
+        current_node = self._head
+        while(current_node):
+            yield current_node.get_value()
+            current_node = current_node.get_next_node()
